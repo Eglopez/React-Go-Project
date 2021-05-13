@@ -1,4 +1,4 @@
-module github.com/LKezHn/React-Go-Project.git
+module github.com/LKezHn/React-Go-Project
 
 go 1.13
 
