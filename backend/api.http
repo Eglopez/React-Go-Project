@@ -32,7 +32,7 @@ Content-Type: application/json
     "username": "EthWin"
 }
 ### Delete a new user
-DELETE  http://localhost:4400/api/v1/users/6 HTTP/1.1
+DELETE  http://localhost:4400/api/v1/users/7 HTTP/1.1
 Content-Type: application/json
 ### Get all tasks
 GET http://localhost:4400/api/v1/boards/ HTTP/1.1
