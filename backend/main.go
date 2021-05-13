@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/LKezHn/React-Go-Project/backend/routers"
+	"github.com/LKezHn/React-Go-Project/routers"
 	"github.com/gin-gonic/gin"
 )
 

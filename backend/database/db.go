@@ -3,7 +3,7 @@ package database
 import (
 	"database/sql"
 
-	"github.com/LKezHn/trillBackend/libs/ErrorManager"
+	"github.com/LKezHn/React-Go-Project/libs/ErrorManager"
 	_ "github.com/go-sql-driver/mysql"
 )
 

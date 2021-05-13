@@ -3,7 +3,7 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/LKezHn/trillBackend/core"
+	"github.com/LKezHn/React-Go-Project/core"
 	"github.com/gin-gonic/gin"
 )
 

@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"github.com/LKezHn/trillBackend/controllers"
+	"github.com/LKezHn/React-Go-Project/controllers"
 	"github.com/gin-gonic/gin"
 )
 

@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/LKezHn/trillBackend/core/models"
-	"github.com/LKezHn/trillBackend/database"
-	enc "github.com/LKezHn/trillBackend/libs/EncryptManager"
-	em "github.com/LKezHn/trillBackend/libs/ErrorManager"
+	"github.com/LKezHn/React-Go-Project/core/models"
+	"github.com/LKezHn/React-Go-Project/database"
+	enc "github.com/LKezHn/React-Go-Project/libs/EncryptManager"
+	em "github.com/LKezHn/React-Go-Project/libs/ErrorManager"
 	"github.com/gin-gonic/gin"
 )
 

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/LKezHn/trillBackend/core/models"
+	"github.com/LKezHn/React-Go-Project/core/models"
 	"github.com/gin-gonic/gin"
 )
 
