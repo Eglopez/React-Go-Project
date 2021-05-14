@@ -5,13 +5,14 @@ Content-Type: application/json
 GET http://localhost:4400/ HTTP/1.1
 Content-Type: application/json
 ### Get one user
-GET http://localhost:4400/api/v1/users/2 HTTP/1.1
+GET http://localhost:4400/api/v1/account HTTP/1.1
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJleHAiOjE2MjA5NTk2NDUsImlzcyI6Im15QmFja2VuZCJ9.ok8y8svib7HWu70VppITKe9gpkzXTP5UdQEF7ixcjrw
 ### Get all users
 GET http://localhost:4400/api/v1/users/ HTTP/1.1
 Content-Type: application/json
 ### Creating a new user
-POST http://localhost:4400/api/v1/users/ HTTP/1.1
+POST http://localhost:4400/api/v1/account/signup HTTP/1.1
 Content-Type: application/json
 
 {
@@ -45,4 +46,12 @@ Content-Type: application/json
     "id": 4,
     "boardName": "Bootcamp",
     "backgroundColor": "#f02d3e"
+}
+### Login
+POST http://localhost:4400/api/v1/account/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "userName": "JHon",
+    "password": "supersecreto"
 }
