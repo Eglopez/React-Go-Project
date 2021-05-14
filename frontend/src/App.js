@@ -7,12 +7,14 @@ import Signup from './views/SignupView';
 function App() {
   return (
     <>
+    
       <Router>
         <Route path="/" exact component={Login}/>
         <Route path="/login" exact component={Login}/>
         <Route path="/signup" component={Signup}/>
       </Router>
-    </>
+    </> 
+    
   );
 }
 

@@ -5,10 +5,12 @@ import Form from '../components/Form';
 export default function LoginView(){
     return (
         <>
-            <Form title="Login">
-                <Input type="text" placeholder="Ingrese @username"/>
-                <Input type="password" placeholder="Ingrese contraseña"/>
-            </Form>
+            <div>
+                <Form title="Login">
+                    <Input type="text" placeholder="Ingrese @username"/>
+                    <Input type="password" placeholder="Ingrese contraseña"/>
+                </Form>
+            </div>    
         </>
     );
 }
