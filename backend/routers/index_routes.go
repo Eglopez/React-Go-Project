@@ -10,6 +10,6 @@ func InitRoutes(router *gin.RouterGroup) {
 	router.GET("/", controllers.ShowInfo)
 	router.GET("/test", controllers.Test)
 
-	AddUserRoutes(router)
+	AddAccountRoutes(router)
 	AddBoardRoutes(router)
 }
