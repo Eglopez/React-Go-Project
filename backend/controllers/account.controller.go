@@ -1,42 +1,66 @@
 package controllers
 
 import (
+	"database/sql"
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/LKezHn/React-Go-Project/core/models"
+
 	"github.com/LKezHn/React-Go-Project/database"
 	enc "github.com/LKezHn/React-Go-Project/libs/EncryptManager"
 	em "github.com/LKezHn/React-Go-Project/libs/ErrorManager"
+	tm "github.com/LKezHn/React-Go-Project/libs/TokenManager"
 	"github.com/gin-gonic/gin"
 )
 
 type User models.User
 type UserList []User
 
-func GetAllUsers(c *gin.Context) {
-	var users = UserList{}
+func LoginUser(c *gin.Context) {
 	db := database.Init()
 	defer database.CloseConnection(db)
-	rows, err := db.Query("SELECT id, str_firstName, str_lastName, str_email, str_username FROM User")
-	em.ErrorCheck(err)
 
-	for rows.Next() {
-		user := User{}
-		err := rows.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Email, &user.Username)
-		em.ErrorCheck(err)
-		users = append(users, user)
+	user := User{}
+	c.Bind(&user)
+	id, password := "", ""
+
+	err := db.QueryRow("SELECT id, str_password FROM User WHERE BINARY str_username = ?", user.Username).Scan(&id, &password)
+
+	if err == sql.ErrNoRows {
+		c.JSON(http.StatusNotFound, gin.H{
+			"message": "Account not found",
+		})
+		return
 	}
 
-	data, _ := json.Marshal(users)
-	c.Data(http.StatusOK, "application/json", data)
+	if enc.CheckPassword(user.Password, password) {
+		c.JSON(http.StatusFound, gin.H{
+			"token": tm.NewToken(id),
+		})
+	} else {
+		c.JSON(http.StatusForbidden, gin.H{
+			"message": "Incorrect password",
+		})
+	}
+
 }
 
 func GetUser(c *gin.Context) {
 	db := database.Init()
 	defer database.CloseConnection(db)
 	var user User
-	id := c.Param("id")
+	token := c.GetHeader("Authorization")
+	fmt.Println(token)
+	id, err := tm.ValidateToken(token)
+
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
 
 	row, err := db.Query("SELECT id, str_firstName, str_lastName, str_email, str_username FROM User WHERE User.id = ?", id)
 	em.ErrorCheck(err)
@@ -51,7 +75,7 @@ func GetUser(c *gin.Context) {
 
 }
 
-func AddNewUser(c *gin.Context) {
+func AddNewAccount(c *gin.Context) {
 	var user User
 	c.Bind(&user)
 	user.Password = enc.EncryptPassword(user.Password)
