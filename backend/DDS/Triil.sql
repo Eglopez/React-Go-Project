@@ -8,8 +8,8 @@ CREATE TABLE User(
     id INT AUTO_INCREMENT PRIMARY KEY,
     str_firstName VARCHAR(100) NOT NULL,
     str_lastName VARCHAR(100) NOT NULL,
-    str_email VARCHAR(60) UNIQUE NOT NULL,
-    str_username VARCHAR(16) UNIQUE NOT NULL,
+    str_email VARCHAR(60) NOT NULL UNIQUE,
+    str_username VARCHAR(16) NOT NULL UNIQUE,
     str_password VARCHAR(100) NOT NULL
 );
 
