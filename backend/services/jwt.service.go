@@ -1,4 +1,4 @@
-package TokenManager
+package services
 
 import (
 	"errors"
@@ -10,7 +10,7 @@ import (
 
 func NewToken(id string) string {
 
-	expirationTime := time.Now().Add(3 * time.Minute)
+	expirationTime := time.Now().Add(10 * time.Minute)
 
 	claims := models.JWT{
 		Id: id,
@@ -32,7 +32,7 @@ func ValidateToken(jwtFromHeader string) (string, error) {
 		jwtFromHeader,
 		&models.JWT{},
 		func(token *jwt.Token) (interface{}, error) {
-			return []byte("secureSecretText"), nil
+			return []byte("mysupersecret"), nil
 		},
 	)
 

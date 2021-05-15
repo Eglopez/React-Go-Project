@@ -1,4 +1,4 @@
-package EncryptManager
+package services
 
 import (
 	"golang.org/x/crypto/bcrypt"
@@ -9,12 +9,12 @@ func hashPassword(password string) (string, error) {
 	return string(bytes), err
 }
 
-func CheckPassword(password, hashedPassword string) bool {
+func PasswordIsValid(password, hashedPassword string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
 	return err == nil
 }
 
-func EncryptPassword(password string) string {
+func encryptPassword(password string) string {
 	hashed, err := hashPassword(password)
 	if err != nil {
 		panic(err.Error())
