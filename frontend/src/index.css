@@ -6,10 +6,21 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background-color: #2ab308;
+  
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/*
+Propuesta de paleta de colores #1
+
+#15d3a5 --- tipo acua
+#cfcdd7 --- tipo gris
+#536a87 --- tipo azulgrisaceo
+#384862 --- tipo azul oscuro
+#fefdff --- tipo blanco
+
+*/
