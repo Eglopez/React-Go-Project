@@ -3,7 +3,6 @@ package services
 import (
 	"database/sql"
 	"errors"
-	"fmt"
 	"strings"
 
 	"github.com/LKezHn/React-Go-Project/core/models"
@@ -38,7 +37,7 @@ func AddUser(user *models.User) error {
 
 	query, err := db.Prepare("INSERT INTO User(str_firstName,str_lastName, str_email, str_username, str_password) VALUES (?, ?, ?, ?, ?)")
 	if err != nil {
-		fmt.Println(err.Error())
+		return errors.New("error")
 	}
 
 	res, err := query.Exec(user.FirstName, user.LastName, user.Email, user.Username, user.Password)
