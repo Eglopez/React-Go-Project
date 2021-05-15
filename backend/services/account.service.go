@@ -4,13 +4,14 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"strings"
 
 	"github.com/LKezHn/React-Go-Project/core/models"
 	"github.com/LKezHn/React-Go-Project/database"
 	"github.com/go-sql-driver/mysql"
 )
 
-func AuthUser(username string) (string, string, error) {
+func GetUserCredentials(username string) (string, string, error) {
 	var (
 		id       string
 		password string
@@ -44,7 +45,13 @@ func AddUser(user *models.User) error {
 
 	if driverErr, ok := err.(*mysql.MySQLError); ok {
 		if driverErr.Number == 1062 {
-			return errors.New("Email or username already exists")
+			if strings.Contains(driverErr.Error(), "str_email") {
+				return errors.New("Email already exists")
+			}
+
+			if strings.Contains(driverErr.Error(), "str_username") {
+				return errors.New("Username already exists")
+			}
 		}
 	}
 
