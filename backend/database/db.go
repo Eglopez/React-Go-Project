@@ -2,14 +2,16 @@ package database
 
 import (
 	"database/sql"
+	"fmt"
 
-	"github.com/LKezHn/React-Go-Project/libs/ErrorManager"
 	_ "github.com/go-sql-driver/mysql"
 )
 
 func Init() *sql.DB {
 	db, err := sql.Open("mysql", "admin:admin@/Trill")
-	ErrorManager.ErrorCheck(err)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 	return db
 }
 
