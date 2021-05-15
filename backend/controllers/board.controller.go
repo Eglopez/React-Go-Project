@@ -5,26 +5,46 @@ import (
 	"net/http"
 
 	"github.com/LKezHn/React-Go-Project/core/models"
+	"github.com/LKezHn/React-Go-Project/services"
 	"github.com/gin-gonic/gin"
 )
 
 type Board models.Board
 type BoardList []Board
 
-var list = BoardList{
-	Board{1, "Base de Datos 1", "#ff00ff"},
-	Board{2, "Inteligencia Artificial", "#f6f6f6"},
-	Board{3, "Google", "#090909"},
-}
+func GetUserBoards(c *gin.Context) {
+	id, _ := c.Get("user_id")
+	boards := services.GetBoards(id)
 
-func GetAllBoard(c *gin.Context) {
-	data, _ := json.Marshal(list)
+	data, _ := json.Marshal(boards)
+
 	c.Data(http.StatusOK, "application/json", data)
 }
 
 func AddNewBoard(c *gin.Context) {
-	var board Board
+	board := models.Board{}
+	id, _ := c.Get("user_id")
 	c.Bind(&board)
-	list = append(list, board)
-	c.JSON(http.StatusCreated, board)
+
+	err := services.CreateBoard(&board)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	err = services.AddBoardToUser(id, board.Id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	c.JSON(http.StatusCreated, gin.H{
+		"message": "Board created",
+	})
+
 }
