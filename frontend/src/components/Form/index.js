@@ -1,10 +1,11 @@
 import React from 'react';
-import { Button, Form, Col, Row } from 'react-bootstrap';
+import { Button, Form, Col, Row, Container } from 'react-bootstrap';
 
 const LoginForm = ({ children, title, onSubmitFunction }) => {
     return (
-        <Form onSubmit={onSubmitFunction}>
-            <h3>{title}</h3>
+        <Container className="login-container">
+            <Form onSubmit={onSubmitFunction}>
+            <h3 className="login-title">{title}</h3>
             <Form.Group as={Row} controlId="formPlaintextEmail">
               <Form.Label column sm="2">
                 Username
@@ -24,6 +25,7 @@ const LoginForm = ({ children, title, onSubmitFunction }) => {
             </Form.Group>
             <Button variant="success" className="btn">Login</Button>
         </Form>
+        </Container>
     )
 }
 
