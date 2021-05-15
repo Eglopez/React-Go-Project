@@ -15,7 +15,7 @@ type UserList []User
 func LoginUser(c *gin.Context) {
 	user := User{}
 	c.Bind(&user)
-	id, password, err := services.AuthUser(user.Username)
+	id, password, err := services.GetUserCredentials(user.Username)
 
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{
