@@ -10,7 +10,7 @@ import (
 
 func NewToken(id string) string {
 
-	expirationTime := time.Now().Add(3 * time.Minute)
+	expirationTime := time.Now().Add(10 * time.Minute)
 
 	claims := models.JWT{
 		Id: id,
