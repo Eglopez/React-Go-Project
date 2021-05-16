@@ -16,7 +16,8 @@ func GetBoards(id interface{}) []Board {
 	db := database.Init()
 	defer database.CloseConnection(db)
 
-	rows, err := db.Query("SELECT Board.id, Board.str_name, Board.str_backgroundColor FROM Board INNER JOIN UserBoard ON UserBoard.id_board = Board.id WHERE UserBoard.id_user = ?", id)
+	rows, err := db.Query(`SELECT Board.id, Board.str_name, Board.str_backgroundColor FROM Board 
+		INNER JOIN UserBoard ON UserBoard.id_board = Board.id WHERE UserBoard.id_user = ?`, id)
 
 	if err != nil {
 		fmt.Println(err)
