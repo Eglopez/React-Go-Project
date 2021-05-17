@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/LKezHn/React-Go-Project/core/models"
@@ -19,6 +20,15 @@ func GetUserBoards(c *gin.Context) {
 	data, _ := json.Marshal(boards)
 
 	c.Data(http.StatusOK, "application/json", data)
+}
+
+func GetBoardMembers(c *gin.Context) {
+	board_id := c.Param("id")
+	members := services.GetMembers(board_id)
+
+	data, _ := json.Marshal(members)
+
+	c.Data(http.StatusFound, "applicatiom/json", data)
 }
 
 func AddNewBoard(c *gin.Context) {
@@ -40,6 +50,12 @@ func AddNewBoard(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"message": err.Error(),
 		})
+		return
+	}
+
+	err = services.AddMemberToBoard(id, board.Id)
+	if err != nil {
+		fmt.Println(err.Error())
 		return
 	}
 
