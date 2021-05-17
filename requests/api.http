@@ -36,16 +36,20 @@ Content-Type: application/json
 ### Delete a new user
 DELETE  http://localhost:4400/api/v1/users/7 HTTP/1.1
 Content-Type: application/json
-### Get all tasks
+### Get all boards
 GET http://localhost:4400/api/v1/boards/ HTTP/1.1
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIiLCJleHAiOjE2MjEwNDg5NTQsImlzcyI6Im15QmFja2VuZCJ9.aruaQj-y-Mr4JPkkRP5QbtFEt5SwZJEOR6rtoPjS0d0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJleHAiOjE2MjEyNjkzMjQsImlzcyI6Im15QmFja2VuZCJ9.U9Bq4vxLQQ2uJTevXF6XajkWgTvZcMb8SZKYPe6G47c
 
+### Get board's members
+GET http://localhost:4400/api/v1/boards/4/members HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJleHAiOjE2MjEyNjkzMjQsImlzcyI6Im15QmFja2VuZCJ9.U9Bq4vxLQQ2uJTevXF6XajkWgTvZcMb8SZKYPe6G47c
 
-### Creating a new task
+### Creating a new board
 POST http://localhost:4400/api/v1/boards/ HTTP/1.1
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIiLCJleHAiOjE2MjEwNDg5NTQsImlzcyI6Im15QmFja2VuZCJ9.aruaQj-y-Mr4JPkkRP5QbtFEt5SwZJEOR6rtoPjS0d0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJleHAiOjE2MjEyNjc1MDcsImlzcyI6Im15QmFja2VuZCJ9.VPaxBzk4PhgOEBAxztnsn2AyJWHGSrYkoaOSxdyyCcU
 
 {
     "boardName": "Algoritmos",
