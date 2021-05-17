@@ -10,4 +10,5 @@ func AddBoardRoutes(router *gin.RouterGroup) {
 
 	router.GET("/boards", middlewares.TokenAuthMiddleware(), controllers.GetUserBoards)
 	router.POST("/boards", middlewares.TokenAuthMiddleware(), controllers.AddNewBoard)
+	router.GET("/boards/:id/members", middlewares.TokenAuthMiddleware(), controllers.GetBoardMembers)
 }
