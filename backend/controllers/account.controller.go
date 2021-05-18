@@ -66,3 +66,26 @@ func AddNewAccount(c *gin.Context) {
 	data, _ := json.Marshal(user)
 	c.Data(http.StatusCreated, "application/json", data)
 }
+
+func UpdateAccount(c *gin.Context) {
+	user := models.User{}
+	id, _ := c.Get("user_id")
+
+	err := c.ShouldBind(&user)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": err.Error(),
+		})
+	}
+
+	err = services.UpdateUser(user, id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	data, _ := json.Marshal(user)
+	c.Data(http.StatusAccepted, "application/json", data)
+}
