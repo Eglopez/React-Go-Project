@@ -84,3 +84,37 @@ func GetUserInfo(id interface{}) (models.User, error) {
 
 	return user, e
 }
+
+func UpdateUser(user models.User, id interface{}) error {
+	db := database.Init()
+	defer database.CloseConnection(db)
+
+	query, err := db.Prepare(`
+		UPDATE User SET str_firstName = ?, str_lastName = ?, str_email = ?, str_username = ? WHERE User.id = ?`)
+
+	if err != nil {
+		return errors.New("Error in query")
+	}
+
+	res, err := query.Exec(user.FirstName, user.LastName, user.Email, user.Username, id)
+
+	if driverErr, ok := err.(*mysql.MySQLError); ok {
+		if driverErr.Number == 1062 {
+			if strings.Contains(driverErr.Error(), "str_email") {
+				return errors.New("Email already exists")
+			}
+
+			if strings.Contains(driverErr.Error(), "str_username") {
+				return errors.New("Username already exists")
+			}
+		}
+	}
+
+	_, err = res.LastInsertId()
+
+	if err != nil {
+		return errors.New("error")
+	}
+
+	return nil
+}
