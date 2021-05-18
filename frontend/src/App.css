@@ -2,37 +2,10 @@
   --gray-primary: #536a87;
   --gray-secondary: #cfcdd7;
   --title: #384862;
-  --button: #15d3a5
+  --button: #15d3a5;
 }
 
 body {
   background-color:var(--gray-primary) !important;
 }
 
-.btn {
-  background-color: var(--button)!important;
-  width: 200px;
-  margin-left: 130px;
-  margin-top: 10px;
-}
-
-.login-container {
-  background-color: var(--gray-secondary);
-  margin-top: 180px;
-  margin-left: 30%;
-  margin-right: 30%;
-  padding-left: 900px;
-  padding-right: 900px;
-  border-radius: 1.1rem;
-  height: 250px;
-  width: 500px!important;
-
-}
-
-.login-title{
-  text-align: center;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  color: var(--title);
-  font-weight: bold;
-}
