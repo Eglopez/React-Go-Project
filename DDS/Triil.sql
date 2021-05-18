@@ -52,7 +52,14 @@ CREATE TABLE UserBoard(
     FOREIGN KEY (id_board) REFERENCES Board(id) ON DELETE CASCADE
 );
 
-CREATE TABLE BoardTeam(
+CREATE TABLE BoardMember(
+    id_board INT NOT NULL,
+    id_member INT NOT NULL,
+    FOREIGN KEY (id_board) REFERENCES Board(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_member) REFERENCES User(id) ON DELETE CASCADE
+);
+
+CREATE TABLE TeamBoard(
     id_team INT NOT NULL,
     id_board INT NOT NULL,
     FOREIGN KEY (id_team) REFERENCES Team(id) ON DELETE CASCADE,
