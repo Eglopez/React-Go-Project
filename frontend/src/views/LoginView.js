@@ -19,6 +19,7 @@ export default function LoginView(){
             url:'/account/login HTTP/1.1',
             method:'post',
             responseType:'json',
+            headers:{'Content-Type':'multipart/form-data'},
             data:{
                 username: user.Username,
                 password: user.Password
