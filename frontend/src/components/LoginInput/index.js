@@ -6,7 +6,7 @@ export default function Input({ setState, state, type, placeholder, controlId, l
     
     const handleUser = (e) => {
         console.log(e.target.value);
-        setState({...state, [label]: e.target.value})
+        setState({...state, [label.toLowerCase()]: e.target.value})
     }
 
     return(

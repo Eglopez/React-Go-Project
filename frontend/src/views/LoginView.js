@@ -13,15 +13,15 @@ export default function LoginView(){
 
     const submitUser = (e) => {
         e.preventDefault();
-        console.log(user.Password);
+        console.log(user.password);
 
         axios({
-            url:'/account/login HTTP/1.1',
-            method:'post',
+            url:'http://localhost:4400/api/v1/account/login',
+            method:'POST',
             responseType:'json',
             data:{
-                username: user.Username,
-                password: user.Password
+                username: user.username,
+                password: user.password
             }
         }).then(res => {
             console.log(res);
