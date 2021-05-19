@@ -1,0 +1,40 @@
+.btn {
+    background-color: var(--button)!important;
+    width: 200px;
+    margin-left: 130px;
+    margin-top: 10px;
+  }
+  
+  .signUp-container {
+    background-color: var(--gray-secondary);
+    margin-top: 170px;
+    margin-left: 35%;
+    margin-right: 50%;
+    border-radius: 1.1rem;
+    height: 425px;
+    width: 520px!important;
+    
+  
+  }
+  
+  .SignUp-title{
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: var(--title);
+    font-weight: bold;
+  }
+  
+  .login-link{
+    margin-left: 78%;
+  }
+
+  .btn:hover{
+      background-color: #32c79d!important;
+      transition: 0.5s;
+  }
+
+  .signUp-container:hover{
+      background-color: #cfcdd7dc;
+      transition: 0.8s;
+  }

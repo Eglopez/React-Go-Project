@@ -9,7 +9,7 @@ const LoginForm = ({ children, title, onSubmitFunction }) => {
   
   return (
       <Container className="login-container">
-          <Form onSubmit={onSubmitFunction}>
+        <Form onSubmit={onSubmitFunction}>
           <h3 className="login-title">{title}</h3>
           { children }
           <Link to="/signup" className="signup-link">Crear Cuenta</Link><br></br>
