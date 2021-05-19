@@ -4,12 +4,14 @@ import (
 	"net/http"
 
 	"github.com/LKezHn/React-Go-Project/routers"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 
 	r := gin.Default()
+	r.Use(cors.Default())
 	r.LoadHTMLGlob("templates/*")
 
 	r.GET("/", func(c *gin.Context) {
