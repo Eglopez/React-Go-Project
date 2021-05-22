@@ -28,6 +28,21 @@ func GetUserCredentials(username string) (string, string, error) {
 	return id, password, e
 }
 
+func GetPassword(id interface{}) (string, error) {
+	var password string
+	db := database.Init()
+	defer database.CloseConnection(db)
+
+	err := db.QueryRow("SELECT str_password FROM User WHERE User.id = ?", id).Scan(&password)
+
+	if err == sql.ErrNoRows {
+		return "", errors.New("User id doesn't exists")
+	}
+
+	return password, nil
+
+}
+
 func AddUser(user *models.User) error {
 
 	user.Password = encryptPassword(user.Password)
@@ -110,6 +125,60 @@ func UpdateUser(user models.User, id interface{}) error {
 		}
 	}
 
+	_, err = res.LastInsertId()
+
+	if err != nil {
+		return errors.New("error")
+	}
+
+	return nil
+}
+
+func DeleteUser(id interface{}) error {
+	db := database.Init()
+	defer database.CloseConnection(db)
+
+	query, err := db.Prepare(`
+		DELETE FROM User WHERE User.id = ?
+	`)
+
+	if err != nil {
+		return errors.New("Error in query")
+	}
+
+	res, err := query.Exec(id)
+
+	if err != nil {
+		return errors.New("error")
+	}
+	_, err = res.LastInsertId()
+
+	if err != nil {
+		return errors.New("error")
+	}
+
+	return nil
+}
+
+func ChangePassword(newPass string, id interface{}) error {
+	db := database.Init()
+	defer database.CloseConnection(db)
+
+	newPass = encryptPassword(newPass)
+
+	query, err := db.Prepare(`
+		UPDATE User SET str_password = ? WHERE User.id = ?
+	`)
+
+	if err != nil {
+		return errors.New("Error in query")
+	}
+
+	res, err := query.Exec(newPass, id)
+
+	if err != nil {
+		return errors.New("error")
+	}
 	_, err = res.LastInsertId()
 
 	if err != nil {
