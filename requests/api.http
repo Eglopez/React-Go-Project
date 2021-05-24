@@ -72,7 +72,7 @@ Content-Type: application/json
 
 {
     "userName": "LKez",
-    "password": "password"
+    "password": "luis2406"
 }
 
 ### Update user info
@@ -85,4 +85,14 @@ Content-Type: application/json
     "firstName": "Luis",
     "lastName": "Martinez",
     "email": "lkezhn@gmail.com"
+}
+
+### Change Password
+POST http://localhost:4400/api/v1/account/changePassword HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJleHAiOjE2MjE2NDU1NjEsImlzcyI6Im15QmFja2VuZCJ9.82QzWfCa8vP1thWvsoJUNG4lL9MpvWdlio5nHJS3k7Q
+Content-Type: application/json
+
+{
+    "password": "password",
+    "newPassword": "luis2406"
 }

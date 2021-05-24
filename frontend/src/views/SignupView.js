@@ -18,10 +18,10 @@ export default function SignupView(){
             url:'http://localhost:4400/api/v1/account/signup',
             method:'POST',
             responseType:'json',
-            headers:{'Content-Type':'multipart/form-data'},
+            headers:{'Content-Type':'application/json'},
             data:{
-               firstname: user.firstname,
-               lastname: user.lastname,
+               firstName: user.firstname,
+               lastName: user.lastname,
                email: user.email,
                username: user.username,
                password: user.password
